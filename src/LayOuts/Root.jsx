@@ -4,9 +4,12 @@ import Footer from "../Components/Footer/Footer";
 
 const Root = () => {
   return (
-    <div >
-        <Navbar></Navbar>
-      <Outlet></Outlet>
+    <div className="">
+      <Navbar></Navbar>
+      <div className="">
+        <Outlet></Outlet>
+      </div>
+
       <Footer></Footer>
     </div>
   );

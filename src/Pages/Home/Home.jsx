@@ -1,10 +1,11 @@
+import Category from "../../Components/Category/Category";
 import Container from "../../Components/Tools/Container";
 
 const Home = () => {
   return (
-    <div>
+    <div className="">
       <Container>
-        <h1>home</h1>
+        <Category></Category>
       </Container>
     </div>
   );

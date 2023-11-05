@@ -21,7 +21,8 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar container fixed top-0 left-0 right-0  mx-auto  shadow">
+    <div className="bg-white bg-opacity-20  fixed top-0 left-0 right-0 z-40">
+        <div className="navbar  container    mx-auto  shadow">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn lg:hidden btn-sm btn-circle">
@@ -76,6 +77,7 @@ const Navbar = () => {
           <RiLoginCircleLine></RiLoginCircleLine>
         </button>
       </div>
+    </div>
     </div>
   );
 };

@@ -2,7 +2,8 @@ import logo from "../../../public/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="footer container mx-auto items-center p-4 bg-neutral text-neutral-content">
+    <footer className="bg-neutral">
+      <div className="container mx-auto footer  items-center p-4  text-neutral-content">
       <aside className="items-center grid-flow-col">
         <div className="flex justify-center">
           <img className="rounded-full w-40" src={logo} alt="" />
@@ -44,6 +45,7 @@ const Footer = () => {
           </svg>
         </a>
       </nav>
+      </div>
     </footer>
   );
 };
