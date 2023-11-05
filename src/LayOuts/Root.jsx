@@ -3,7 +3,7 @@
 const Root = () => {
     return (
         <div>
-            Hello from root
+            <h1 className="text-7xl font-bold">Hello from root</h1>
         </div>
     );
 };
