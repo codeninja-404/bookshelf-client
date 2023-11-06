@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../../public/logo.png";
 import { RiLogoutCircleRLine, RiLoginCircleLine } from "react-icons/ri";
 
@@ -74,7 +74,7 @@ const Navbar = () => {
 
         {/* log in btn */}
         <button className="btn btn-sm text-2xl  btn-circle">
-          <RiLoginCircleLine></RiLoginCircleLine>
+          <Link to="/register"><RiLoginCircleLine></RiLoginCircleLine></Link>
         </button>
       </div>
     </div>
