@@ -1,11 +1,11 @@
-
+import Title from "../../Components/Tools/Title";
 
 const AddBooks = () => {
-    return (
-        <div>
-            add books
-        </div>
-    );
+  return (
+    <div>
+      <Title>add books</Title>
+    </div>
+  );
 };
 
 export default AddBooks;

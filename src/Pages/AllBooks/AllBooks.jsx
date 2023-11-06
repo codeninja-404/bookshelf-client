@@ -1,9 +1,10 @@
+import Title from "../../Components/Tools/Title";
 
 
 const AllBooks = () => {
     return (
         <div>
-            AllBooks
+            <Title>All Books</Title>
         </div>
     );
 };
