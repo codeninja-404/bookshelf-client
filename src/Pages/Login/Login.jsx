@@ -1,14 +1,43 @@
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import Title from "../../Components/Tools/Title";
+import toast from "react-hot-toast";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvides";
 
 const Login = () => {
+  const { logIn, logInGoogle } = useContext(AuthContext);
+
+  const handleLogIn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    logIn(email, password)
+      .then((res) => {
+        toast.success("User Logged In successful!");
+      })
+      .catch((err) => {
+        toast.error(err.code);
+      });
+  };
+
+  const handleGoogleLogIn = () => {
+    logInGoogle()
+      .then((result) => {
+        navigate(location?.state ? location.state : "/");
+        toast.success("User Logged In successful!");
+      })
+      .catch((err) => toast.error("Log In failed!"));
+  };
   return (
-    <div className="pt-32  ">
+    <div className="  ">
       <div className="px-2 mx-auto mb-20 ">
         <div className="hero-content mx-auto flex-col ">
-          <h1 className="text-4xl text-center  font-bold uppercase ">sign in</h1>
+          <Title>SIGN in</Title>
           <div className="  w-full max-w-lg   rounded-xl  shadow-xl shadow-black">
-            <form className=" px-3 py-4">
+            <form onSubmit={handleLogIn} className=" px-3 py-4">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text ">Email</span>
@@ -42,9 +71,9 @@ const Login = () => {
                 </button>
               </div>
               <div className="flex flex-col gap-2 justify-center  py-2">
-                <Link className="btn btn-sm w-2/3 mx-auto  btn-primary ">
+                <Link onClick={handleGoogleLogIn} className="btn btn-sm w-2/3 mx-auto  btn-primary ">
                   <FcGoogle></FcGoogle>
-                  LOG IN WITH GOOGLE
+                   GOOGLE
                 </Link>
                 <Link to="/register" className=" btn btn-sm w-2/3 mx-auto   ">
                   create account

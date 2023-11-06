@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvides";
 import { updateProfile } from "firebase/auth";
+import Title from "../../Components/Tools/Title";
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
@@ -36,12 +37,12 @@ const Register = () => {
       .catch((err) => toast.error(err.message));
   };
   return (
-    <div className="pt-32  ">
+    <div className=" ">
       <div className="px-2 mx-auto mb-20 ">
-        <div className="hero-content mx-auto flex-col ">
-          <h1 className="text-4xl text-center  font-bold uppercase ">
-            create account
-          </h1>
+      
+        <div className=" flex flex-col items-center ">
+        <div className=""><Title> create account</Title></div>
+          
           <div className="  w-full max-w-lg   rounded-xl  shadow-xl shadow-black">
             <form onSubmit={handleSignUp} className=" px-3 py-4">
               <div className="form-control">
