@@ -1,6 +1,40 @@
+import { useContext } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvides";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
+    const { createUser } = useContext(AuthContext);
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = e.target.name.value;
+    const photo = e.target.photo.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    if (password.length < 6) {
+      return toast.error("Password must have atleast 6 charecters.");
+    } else if (!/[A-Z]/.test(password)) {
+      return toast.error("Password must have atleast one uppercase letter.");
+    } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      return toast.error("Password must have special charecter.");
+    }
+    createUser(email, password)
+      .then((res) => {
+        updateProfile(res.user, {
+          displayName: name,
+          photoURL: photo,
+        })
+          .then(() => {
+            toast.success("Sign Up Successful");
+          })
+          .catch((err) => {
+            toast.error(err.message);
+          });
+      })
+      .catch((err) => toast.error(err.message));
+  };
   return (
     <div className="pt-32  ">
       <div className="px-2 mx-auto mb-20 ">
@@ -9,7 +43,7 @@ const Register = () => {
             create account
           </h1>
           <div className="  w-full max-w-lg   rounded-xl  shadow-xl shadow-black">
-            <form className=" px-3 py-4">
+            <form onSubmit={handleSignUp} className=" px-3 py-4">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text ">Your Name</span>

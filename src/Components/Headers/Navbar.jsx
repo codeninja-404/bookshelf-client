@@ -74,7 +74,7 @@ const Navbar = () => {
 
         {/* log in btn */}
         <button className="btn btn-sm text-2xl  btn-circle">
-          <Link to="/register"><RiLoginCircleLine></RiLoginCircleLine></Link>
+          <Link to="/login"><RiLoginCircleLine></RiLoginCircleLine></Link>
         </button>
       </div>
     </div>
