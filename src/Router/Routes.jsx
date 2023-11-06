@@ -8,12 +8,13 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Container from "../Components/Tools/Container";
 import Error from "../Pages/Error/Error";
+import PrivateRoute from "../Router/PrivateRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    errorElement:<Error></Error>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",
@@ -21,23 +22,49 @@ const router = createBrowserRouter([
       },
       {
         path: "/register",
-        element: <Container><Register></Register></Container>,
+        element: (
+          <Container>
+            <Register></Register>
+          </Container>
+        ),
       },
       {
         path: "/login",
-        element: <Container><Login></Login></Container>,
+        element: (
+          <Container>
+            <Login></Login>
+          </Container>
+        ),
       },
       {
         path: "/add",
-        element: <Container><AddBooks></AddBooks></Container>,
+        element: (
+          <PrivateRoute>
+            <Container>
+              <AddBooks></AddBooks>
+            </Container>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/all",
-        element: <Container><AllBooks></AllBooks></Container>,
+        element: (
+          <PrivateRoute>
+            <Container>
+              <AllBooks></AllBooks>
+            </Container>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/borrowed",
-        element: <Container><BorrowedBooks></BorrowedBooks></Container>,
+        element: (
+          <PrivateRoute>
+            <Container>
+              <BorrowedBooks></BorrowedBooks>
+            </Container>
+          </PrivateRoute>
+        ),
       },
     ],
   },
