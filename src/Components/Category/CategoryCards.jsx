@@ -18,7 +18,10 @@ const CategoryCards = ({ category }) => {
           </div>
         </div>
         <div className="flex w-full justify-center">
-          <Link to="" className="btn btn-sm rounded-full  btn-primary my-4 w-2/3">
+          <Link
+            to={`/basedbooks/${category.name}`}
+            className="btn btn-sm rounded-full  btn-primary my-4 w-2/3"
+          >
             SHOW BOOKS
           </Link>
         </div>

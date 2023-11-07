@@ -10,6 +10,7 @@ import Container from "../Components/Tools/Container";
 import Error from "../Pages/Error/Error";
 import PrivateRoute from "../Router/PrivateRoute";
 import UpdateBook from "../Pages/Update/UpdateBook";
+import BasedBooks from "../Pages/BasedBooks/BasedBooks";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,16 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <Container>
               <UpdateBook></UpdateBook>
+            </Container>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/basedbooks/:category",
+        element: (
+          <PrivateRoute>
+            <Container>
+              <BasedBooks></BasedBooks>
             </Container>
           </PrivateRoute>
         ),
