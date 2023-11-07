@@ -10,23 +10,23 @@ const instance = axios.create({
 });
 
 const useAxios = () => {
-  const { logOut } = useContext(AuthContext);
-  const navigate = useNavigate();
+//   const { logOut } = useContext(AuthContext);
+//   const navigate = useNavigate();
 
-  instance.interceptors.response.use(
-    (res) => {
-      return res;
-    },
-    (error) => {
-      if (error.response.status === 401 || error.response.status === 403) {
-        logOut().then(() => {
-          navigate("/login");
-        });
-      }
+//   instance.interceptors.response.use(
+//     (res) => {
+//       return res;
+//     },
+//     (error) => {
+//       if (error.response.status === 401 || error.response.status === 403) {
+//         logOut().then(() => {
+//           navigate("/login");
+//         });
+//       }
 
-      return Promise.reject(error);
-    }
-  );
+//       return Promise.reject(error);
+//     }
+//   );
 
   return instance;
 };

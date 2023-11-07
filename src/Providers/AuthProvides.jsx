@@ -9,6 +9,7 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import useAxios from "../Hooks/useAxios";
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
 const auth = getAuth(app);
@@ -16,6 +17,7 @@ const auth = getAuth(app);
 const AuthProvides = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const axios = useAxios();
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -34,15 +36,24 @@ const AuthProvides = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedInUser = { email: userEmail };
       setUser(currentUser);
       setLoading(false);
+      if (currentUser) {
+        axios.post("/jwt", loggedInUser).then((res) => {
+          console.log("token response", res.data);
+        });
+      }
     });
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [axios, user?.email]);
+
   console.log(user);
 
   const authInfo = { createUser, user, loading, logIn, logInGoogle, logOut };
