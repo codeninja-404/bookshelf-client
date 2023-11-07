@@ -9,6 +9,7 @@ import Register from "../Pages/Register/Register";
 import Container from "../Components/Tools/Container";
 import Error from "../Pages/Error/Error";
 import PrivateRoute from "../Router/PrivateRoute";
+import UpdateBook from "../Pages/Update/UpdateBook";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,16 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <Container>
               <BorrowedBooks></BorrowedBooks>
+            </Container>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update/:id",
+        element: (
+          <PrivateRoute>
+            <Container>
+              <UpdateBook></UpdateBook>
             </Container>
           </PrivateRoute>
         ),

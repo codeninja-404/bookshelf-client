@@ -44,9 +44,7 @@ const AuthProvides = ({ children }) => {
       setUser(currentUser);
       setLoading(false);
       if (currentUser) {
-        axios.post("/jwt", loggedInUser).then((res) => {
-          console.log("token response", res.data);
-        });
+        axios.post("/jwt", loggedInUser);
       }
     });
     return () => {

@@ -8,10 +8,15 @@ const Category = () => {
   const [categorys, setCategory] = useState([]);
   const axios = useAxios();
   useEffect(() => {
-    axios.get("/categorys").then((res) => {
-      toast.success("Category displayed.");
-      setCategory(res.data);
-    });
+    axios
+      .get("/categorys")
+      .then((res) => {
+        toast.success("Category displayed.");
+        setCategory(res.data);
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   }, [axios]);
 
   return (
