@@ -11,6 +11,7 @@ import Error from "../Pages/Error/Error";
 import PrivateRoute from "../Router/PrivateRoute";
 import UpdateBook from "../Pages/Update/UpdateBook";
 import BasedBooks from "../Pages/BasedBooks/BasedBooks";
+import Details from "../Pages/Details/Details";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,16 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <Container>
               <UpdateBook></UpdateBook>
+            </Container>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/details/:id",
+        element: (
+          <PrivateRoute>
+            <Container>
+              <Details></Details>
             </Container>
           </PrivateRoute>
         ),
