@@ -12,6 +12,7 @@ import PrivateRoute from "../Router/PrivateRoute";
 import UpdateBook from "../Pages/Update/UpdateBook";
 import BasedBooks from "../Pages/BasedBooks/BasedBooks";
 import Details from "../Pages/Details/Details";
+import Read from "../Pages/Read/Read";
 
 const router = createBrowserRouter([
   {
@@ -95,6 +96,16 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <Container>
               <BasedBooks></BasedBooks>
+            </Container>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/read/:id",
+        element: (
+          <PrivateRoute>
+            <Container>
+              <Read></Read>
             </Container>
           </PrivateRoute>
         ),

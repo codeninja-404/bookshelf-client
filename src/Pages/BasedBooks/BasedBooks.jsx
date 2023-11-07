@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Title from "../../Components/Tools/Title";
 import { Link, useParams } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios";
@@ -15,7 +15,7 @@ const BasedBooks = () => {
       setCategoryBooks(res.data);
       toast.success(`Successfully got ${category} books.`);
     });
-  }, [category,axios]);
+  }, [category, axios]);
   return (
     <div>
       <Title> based books : {category} category </Title>
