@@ -23,7 +23,7 @@ const BookClub = () => {
       <Title>Book Club Events</Title>
       <ul className="md:flex gap-4 ">
         {bookClubEvents.map((event) => (
-          <li key={event.id} className="border flex-1 p-3 rounded-xl">
+          <li key={event.id} className="border flex-1 p-3 my-2 rounded-xl">
             <h3 className="font-bold text-2xl text-gray-400">{event.title}</h3>
             <p>
               <strong>Date :</strong> {event.date}
