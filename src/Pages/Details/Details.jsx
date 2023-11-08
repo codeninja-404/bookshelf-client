@@ -13,32 +13,47 @@ const Details = () => {
   const { user } = useContext(AuthContext);
   const borrowedDate = new Date();
   const [returnDate, setReturnDate] = useState(new Date());
-
+  const [submit, setSubmit] = useState(false);
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
   const [book, setBook] = useState("");
   const axios = useAxios();
   const { id } = useParams();
 
   const handleSubmit = async () => {
     const borrowedBook = {
-      _id: book._id,
       image: book.photoUrl,
       bookName: book.name,
+      category:book.category,
       customerName: user.displayName,
       email: user.email,
       borrowedDate,
       returnDate,
     };
     if (book.quantity <= 0) {
-      toast.error("Books out of stock");
+      toast.error("Sorry!!! book out of stock");
+      setButtonDisabled(true);
       return;
     }
 
-    await axios.post("/borrowed", borrowedBook).then((res) => {
-      if (res.data.acknowledged) {
-        toast.success("Borrowed book successfully.");
+    await axios.get("/borrowed").then((res) => {
+      const exiest = res.data?.find((book) => book.email == borrowedBook.email);
+      if (exiest) {
+        toast.error("Arleady borrowed.");
         return;
+      } else {
+        axios.post("/borrowed", borrowedBook).then((res) => {
+          if (res.data.acknowledged) {
+            toast.success("Borrowed book successfully.");
+            axios.patch(`/books/${id}?quantity=${book.quantity - 1}`);
+            setSubmit(true);
+            if (book?.quantity - 1 <= 0) {
+              setButtonDisabled(true);
+            }
+            return;
+          }
+          toast.error(res.data);
+        });
       }
-      toast.error(res.data);
     });
   };
 
@@ -66,7 +81,8 @@ const Details = () => {
             <h2 className="card-title uppercase text-3xl">{book.category}</h2>
             <h2 className="card-title uppercase">Author : {book.authorName}</h2>
             <h2 className=" font-bold text-green-300 uppercase">
-              Available pcs : {book.quantity}
+              Available pcs :
+              {!submit ? `${book.quantity}` : `${book.quantity - 1}`}
             </h2>
             <p className="">{book?.description?.slice(0, 300)} ......</p>
             <div>
@@ -77,7 +93,8 @@ const Details = () => {
                 onClick={() =>
                   document.getElementById("my_modal_4").showModal()
                 }
-                className="btn btn-warning px-7 btn-sm"
+                className="btn btn-warning px-7 btn-sm "
+                disabled={isButtonDisabled}
               >
                 Borrow
               </button>

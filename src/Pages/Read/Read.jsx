@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
@@ -25,6 +25,10 @@ const Read = () => {
       <PDFViewer className="w-screen h-screen">
         <Pdf book={book}></Pdf>
       </PDFViewer>
+      <Link to="/" className="btn btn-sm my-6">
+        {" "}
+        GO Home
+      </Link>
     </div>
   );
 };
