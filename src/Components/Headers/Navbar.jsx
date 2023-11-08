@@ -6,8 +6,14 @@ import { AuthContext } from "../../Providers/AuthProvides";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [theme, setTheme] = useState("light");
-
+  const [theme, setTheme] = useState("dark");
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
+  }, []);
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -38,8 +44,8 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-white bg-opacity-20  fixed top-0 left-0 right-0 z-40">
-      <div className="navbar  container    mx-auto  shadow">
+    <div className="bg-white bg-opacity-20 shadow  fixed top-0 left-0 right-0 z-40">
+      <div className="navbar  container    mx-auto  ">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn lg:hidden btn-sm btn-circle">
