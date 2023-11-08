@@ -74,7 +74,7 @@ const Details = () => {
     <div>
       <Title>Details of {book?.name}</Title>
       <div className="mx-14">
-        <div className="card  lg:w-5/6 mx-auto p-2 lg:card-side bg-base-100 shadow-xl shadow-black">
+        <div className="card  lg:w-5/6 mx-auto p-2 lg:card-side dark:bg-gray-500 bg-base-100 shadow-xl shadow-black">
           <figure className="p-2 mx-auto lg:w-2/3">
             <img src={book.photoUrl} alt="Album" className="rounded " />
           </figure>
