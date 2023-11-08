@@ -2,7 +2,7 @@ import logo from "/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-neutral">
+    <footer className="bg-neutral dark:bg-gray-700">
       <div className="container mx-auto footer  items-center p-4  text-neutral-content">
       <aside className="items-center grid-flow-col">
         <div className="flex justify-center">

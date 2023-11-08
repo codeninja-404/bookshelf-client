@@ -1,11 +1,25 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "/logo.png";
 import { RiLogoutCircleRLine, RiLoginCircleLine } from "react-icons/ri";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvides";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const handleThemeSwitch = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   const links = (
     <>
       <li>
@@ -61,6 +75,13 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-end">
+          <div className="flex mx-2">
+            <input
+              type="checkbox"
+              onClick={handleThemeSwitch}
+              className="toggle"
+            />
+          </div>
           {user ? (
             <>
               <div className="flex justify-center items-center gap-2">
@@ -71,8 +92,7 @@ const Navbar = () => {
                 </div>
                 <p className="text-[.5rem] md:text-lg ">{user.displayName}</p>
                 <button className="btn btn-sm text-2xl  btn-circle">
-                  <Link onClick={() => logOut()} 
-                  to="/">
+                  <Link onClick={() => logOut()} to="/">
                     <RiLogoutCircleRLine></RiLogoutCircleRLine>
                   </Link>
                 </button>
