@@ -21,9 +21,10 @@ const Details = () => {
 
   const handleSubmit = async () => {
     const borrowedBook = {
+      trackerId: book._id,
       image: book.photoUrl,
       bookName: book.name,
-      category:book.category,
+      category: book.category,
       customerName: user.displayName,
       email: user.email,
       borrowedDate,
@@ -44,7 +45,7 @@ const Details = () => {
         axios.post("/borrowed", borrowedBook).then((res) => {
           if (res.data.acknowledged) {
             toast.success("Borrowed book successfully.");
-            axios.patch(`/books/${id}?quantity=${book.quantity - 1}`);
+            axios.patch(`/books/${id}?quantity=${parseInt(book.quantity) - 1}`);
             setSubmit(true);
             if (book?.quantity - 1 <= 0) {
               setButtonDisabled(true);

@@ -21,7 +21,7 @@ const Read = () => {
       });
   }, [id, axios]);
   return (
-    <div className="h-screen flex flex-col items-center justifycenter">
+    <div className="h-screen flex flex-col items-center justify-center">
       <PDFViewer className="w-screen h-screen">
         <Pdf book={book}></Pdf>
       </PDFViewer>

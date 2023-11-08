@@ -55,7 +55,7 @@ const UpdateBook = () => {
 
   return (
     <div>
-      <Title>Update : {id}</Title>
+      <Title>Update info of {filteredBook.name}</Title>
       <div className="  max-w-5xl mx-auto  rounded-xl  shadow-xl shadow-black">
         <form onSubmit={handleUptadeBook} className="  px-3 py-4">
           <div className="grid  lg:grid-cols-2 gap-2 ">

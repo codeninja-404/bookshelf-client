@@ -52,8 +52,6 @@ const AuthProvides = ({ children }) => {
     };
   }, [axios, user?.email]);
 
-  console.log(user);
-
   const authInfo = { createUser, user, loading, logIn, logInGoogle, logOut };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

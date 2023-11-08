@@ -24,7 +24,7 @@ const BorrowedBooks = () => {
   return (
     <div>
       <Title>Borrowed Books</Title>
-      <div className=" grid md:grid-cols-2 gap-4">
+      <div className=" grid lg:grid-cols-2 gap-4">
         {borrowed?.map((book) => (
           <BorrowedCard
             key={book._id}

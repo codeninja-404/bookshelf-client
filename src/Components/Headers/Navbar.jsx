@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../../public/logo.png";
+import logo from "/logo.png";
 import { RiLogoutCircleRLine, RiLoginCircleLine } from "react-icons/ri";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvides";
