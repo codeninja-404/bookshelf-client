@@ -1,15 +1,47 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Title from "../../Components/Tools/Title";
 import { Link, useParams } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios";
 import toast from "react-hot-toast";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { AuthContext } from "../../Providers/AuthProvides";
 
 const Details = () => {
+  const { user } = useContext(AuthContext);
+  const borrowedDate = new Date();
+  const [returnDate, setReturnDate] = useState(new Date());
+
   const [book, setBook] = useState("");
   const axios = useAxios();
   const { id } = useParams();
+
+  const handleSubmit = async () => {
+    const borrowedBook = {
+      _id: book._id,
+      image: book.photoUrl,
+      bookName: book.name,
+      customerName: user.displayName,
+      email: user.email,
+      borrowedDate,
+      returnDate,
+    };
+    if (book.quantity <= 0) {
+      toast.error("Books out of stock");
+      return;
+    }
+
+    await axios.post("/borrowed", borrowedBook).then((res) => {
+      if (res.data.acknowledged) {
+        toast.success("Borrowed book successfully.");
+        return;
+      }
+      toast.error(res.data);
+    });
+  };
+
   useEffect(() => {
     axios
       .get(`/details/${id}`)
@@ -21,6 +53,7 @@ const Details = () => {
         toast.error(err.message);
       });
   }, [id, axios]);
+
   return (
     <div>
       <Title>Details of {book?.name}</Title>
@@ -32,12 +65,23 @@ const Details = () => {
           <div className="flex flex-col  space-y-3 lg:card-body">
             <h2 className="card-title uppercase text-3xl">{book.category}</h2>
             <h2 className="card-title uppercase">Author : {book.authorName}</h2>
+            <h2 className=" font-bold text-green-300 uppercase">
+              Available pcs : {book.quantity}
+            </h2>
             <p className="">{book?.description?.slice(0, 300)} ......</p>
             <div>
               <Rating style={{ maxWidth: 150 }} readOnly value={book?.rating} />
             </div>
             <div className="card-actions pb-3 justify-center lg:justify-end">
-              <button className="btn btn-warning px-7 btn-sm">Borrow</button>
+              <button
+                onClick={() =>
+                  document.getElementById("my_modal_4").showModal()
+                }
+                className="btn btn-warning px-7 btn-sm"
+              >
+                Borrow
+              </button>
+
               <Link
                 to={`/read/${book?._id}`}
                 className="btn btn-secondery px-7 btn-sm"
@@ -47,6 +91,63 @@ const Details = () => {
             </div>
           </div>
         </div>
+
+        <dialog id="my_modal_4" className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box">
+            <div>
+              <div>
+                <label className="label">
+                  <span className="label-text ">Borrowing date</span>
+                </label>
+                <DatePicker readOnly selected={borrowedDate} />
+              </div>
+              <div>
+                <label className="label">
+                  <span className="label-text ">Return date</span>
+                </label>
+                <DatePicker
+                  selected={returnDate}
+                  onChange={(date) => setReturnDate(date)}
+                />
+              </div>
+              <div className="form-control py-3">
+                <label className="label">
+                  <span className="label-text ">Name</span>
+                </label>
+                <input
+                  readOnly
+                  name="name"
+                  defaultValue={user.displayName}
+                  className="p-2 bg-base-100 border-b"
+                  required
+                />
+              </div>
+              <div className="form-control py-3">
+                <label className="label">
+                  <span className="label-text ">Email</span>
+                </label>
+                <input
+                  readOnly
+                  name="email"
+                  defaultValue={user.email}
+                  className="p-2 bg-base-100 border-b"
+                  required
+                />
+              </div>
+            </div>
+            <div className="modal-action">
+              <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button
+                  onClick={handleSubmit}
+                  className="btn btn-primary px-7 btn-sm"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </dialog>
       </div>
     </div>
   );
