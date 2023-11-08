@@ -6,7 +6,7 @@ import '@smastrom/react-rating/style.css'
 const BookCard = ({ book, children }) => {
   const { name, authorName, category, rating, photoUrl } = book;
   return (
-    <div className="card bg-base-100 shadow-black shadow-xl">
+    <div className="card bg-base-100 dark:bg-gray-500 shadow-black shadow-xl">
       <figure className="p-2">
         <img src={photoUrl} alt="Shoes" className="rounded-xl" />
       </figure>
