@@ -29,11 +29,7 @@ const BorrowedCard = ({ book, setBorrowed, borrowed }) => {
   return (
     <div className="card card-side bg-base-100 dark:bg-gray-500 shadow-xl shadow-black h-96 md:h-60 ">
       <figure className="p-3 ">
-        <img
-          src="https://miblart.com/wp-content/uploads/2020/10/6tZyPWlI-683x1024.jpeg"
-          alt="Movie"
-          className="rounded h-full"
-        />
+        <img src={book.image} alt="Movie" className="rounded h-full" />
       </figure>
       <div className="card-body">
         <h2 className="card-title text-3xl">{book.bookName}</h2>

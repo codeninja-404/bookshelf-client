@@ -37,7 +37,9 @@ const Details = () => {
     }
 
     await axios.get("/borrowed").then((res) => {
-      const exiest = res.data?.find((book) => book.email == borrowedBook.email);
+      const exiest = res.data?.find(
+        (item) => item.trackerId == book._id && item.email == user.email
+      );
       if (exiest) {
         toast.error("Arleady borrowed.");
         return;
