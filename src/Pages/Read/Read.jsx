@@ -22,7 +22,7 @@ const Read = () => {
   }, [id, axios]);
   return (
     <div className="h-screen flex flex-col items-center justify-center">
-      <PDFViewer className="w-screen h-screen">
+      <PDFViewer className="w-screen h-screen mx-auto">
         <Pdf book={book}></Pdf>
       </PDFViewer>
       <Link to="/" className="btn btn-sm my-6">

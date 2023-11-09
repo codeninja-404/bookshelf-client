@@ -9,4 +9,5 @@ live link : https://bookshelf-client-d412a.web.app
 - each user can only see his/her borrowed books.
 - i used express js in the backend with mongodb .
 - except home page other routes are private user only can access these route after logging in.
--user can log in with email and pass by registering, or directly login with google.
+- user can log in with email and pass by registering, or directly login with google.
+- user can read book in pdf formate.
