@@ -14,11 +14,10 @@ live link : https://bookshelf-client-d412a.web.app
 
 
 ### Used Technologys
--axios
--firebase
--localforage
--react-datepicker
--react-hot-toast
--react-icons
--swiper
+- axios
+- firebase
+- react-datepicker
+- react-hot-toast
+- react-icons
+- swiper
 
