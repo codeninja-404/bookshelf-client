@@ -2,7 +2,7 @@
 
 live link : https://bookshelf-client-d412a.web.app
 
-###Project Features
+### Project Features
 -in this project i used tailwind css and daisy ui as design tool for frontend.
 - for date i used react date picker package and for star ratinf i used react-star-rating package.
 - this is an library base website user can borrow book and return books.
@@ -13,7 +13,7 @@ live link : https://bookshelf-client-d412a.web.app
 - user can read book in pdf formate.
 
 
-###Used Technologys
+### Used Technologys
 -axios
 -firebase
 -localforage
